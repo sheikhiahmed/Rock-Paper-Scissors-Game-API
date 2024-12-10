@@ -53,7 +53,13 @@ public class ScoreController {
         return score;
   }
 
-
+// want to number a value wins?new-value=55. use patch operation. implementing query parameter'
+    //localhost:8080/score/wins?new-value=80
+    @PatchMapping("/score/wins")
+    public Score updateWins(@RequestParam(name="new-value") int newValue){
+        score.wins = newValue;
+        return score;
+    }
 
 
     // put replace the complete data
