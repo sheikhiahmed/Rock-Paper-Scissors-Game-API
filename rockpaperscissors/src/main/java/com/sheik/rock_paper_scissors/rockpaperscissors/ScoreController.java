@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 public class ScoreController {
     static Score score = new Score(30,20,10);
 
-    // want to write a method that return string now putting @GetMapping i turned it into a rest get
+    // wrote a method that returns a string. After that by using @GetMapping annotation i turned it into get Rest API
     @GetMapping("/health-check")
     public String getHealthCheck(){
         return "Doing great";
@@ -20,24 +20,38 @@ public class ScoreController {
         return score;
     }
 
-    // return specifies attribute as requested
+    // return specifies attribute data as requested.
     @GetMapping("/score/{wlt}")
     public int getWinsLoosesOrTies(@PathVariable String wlt){
         if(wlt.equalsIgnoreCase("wins")){
             return score.wins;
         } else if (wlt.equalsIgnoreCase("looses")) {
-            return score.looses;
+            return score.losses;
         }
             return score.ties;
     }
 
     //curl -X POST "http://localhost:8080/score/wins"
-    // post method to increase the wins attributes.
-    @PostMapping("/score/wins")
-    public Score increaseWins(){
-        score.wins++;
+    // post method to increase the specific attribute values.
+
+@PostMapping("/score/{arg}")
+  public Score increaseValueByOne(@PathVariable String arg){
+        String values = arg.toLowerCase();
+        switch (values){
+            case "wins":
+                score.wins++;
+                break;
+            case "ties":
+                score.ties++;
+                break;
+            case "losses":
+                score.losses++;
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid argument: " + arg);
+        }
         return score;
-    }
+  }
 
 
 

@@ -3,7 +3,7 @@ package com.sheik.rock_paper_scissors.rockpaperscissors;
 public class Score {
     int wins;
     int ties;
-    int looses;
+    int losses;
 
     public int getWins() {
         return wins;
@@ -22,20 +22,20 @@ public class Score {
     }
 
     public int getLooses() {
-        return looses;
+        return losses;
     }
 
-    public void setLooses(int looses) {
-        this.looses = looses;
+    public void setLooses(int losses) {
+        this.losses = losses;
     }
 
     public Score() {
     }
 
-    public Score(int wins, int ties, int looses) {
+    public Score(int wins, int ties, int losses) {
         this.wins = wins;
         this.ties = ties;
-        this.looses = looses;
+        this.losses = losses;
     }
 
     // spring jdbj and data
