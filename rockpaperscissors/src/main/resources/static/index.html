@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Rock Paper Scissor App!</title>
+</head>
+<body>
+<h2>Which one will it be?</h2>
+<br/>
+<a href="#" onclick="play('rock')">Rock</a> &nbsp;
+<a href="#" onclick="play('paper')">Paper</a> &nbsp;
+<a href="#" onclick="play('scissors')">Scissors</a> &nbsp;
+<hr/> <br/>
+<i><div id="result"></div></i>
+<br/>
+<span id="wins"></span><br/>
+<span id="losses"></span><br/>
+<span id="ties"></span>
+
+<script>
+    // async -> fetching data from the server
+    const play = async function(clientGesture) {
+        let url = "http://localhost:8080/score/wins"; // Default URL
+        let result = "win";
+
+        // Corrected game logic based on gestures
+        if (clientGesture === 'rock') {
+            url = "http://localhost:8080/score/ties";
+            result = "tie";
+        } else if (clientGesture === 'scissors') {
+            url = "http://localhost:8080/score/losses";
+            result = "loss";
+        }
+
+        try {
+            // Fetch the API with a POST request
+            const response = await fetch(url, { method: 'POST' });
+            if (!response.ok) {
+                throw new Error("Network response was not ok");
+            }
+
+            // Parse the response JSON
+            const theScore = await response.json();
+
+            // Update the scoreboard
+            document.getElementById('wins').innerHTML = `<b>Wins:</b> ${theScore.wins}`;
+            document.getElementById('losses').innerHTML = `<b>Losses:</b> ${theScore.losses}`;
+            document.getElementById('ties').innerHTML = `<b>Ties:</b> ${theScore.ties}`;
+        } catch (error) {
+            console.error("Error fetching data:", error); // Error logging
+        }
+
+        // Update the result
+        document.getElementById('result').innerHTML = `The result was a: ${result}`;
+    };
+</script>
+</body>
+</html>

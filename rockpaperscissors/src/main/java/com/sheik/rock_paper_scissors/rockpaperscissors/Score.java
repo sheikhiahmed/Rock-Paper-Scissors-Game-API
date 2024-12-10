@@ -1,10 +1,10 @@
 package com.sheik.rock_paper_scissors.rockpaperscissors;
-
 public class Score {
     int wins;
     int ties;
     int losses;
 
+    // Getters and setters
     public int getWins() {
         return wins;
     }
@@ -21,22 +21,19 @@ public class Score {
         this.ties = ties;
     }
 
-    public int getLooses() {
+    public int getLosses() {
         return losses;
     }
 
-    public void setLooses(int losses) {
+    public void setLosses(int losses) {
         this.losses = losses;
     }
 
-    public Score() {
-    }
+    public Score() {}
 
     public Score(int wins, int ties, int losses) {
         this.wins = wins;
         this.ties = ties;
         this.losses = losses;
     }
-
-    // spring jdbj and data
 }
