@@ -3,7 +3,7 @@ package com.sheik.rock_paper_scissors.rockpaperscissors;
 import org.springframework.web.bind.annotation.*;
 
 
-// CrossOrigin, RestController, PatchMapping, GetMapping, PutMapping, DeleteMapping, PathVariable, RequestBody, RequestParam
+// CrossOrigin, RestController,PostMapping(PathVariable) PatchMapping(requestParam), GetMapping(path variable), PutMapping(requestBody), DeleteMapping, PathVariable, RequestBody, RequestParam
 @RestController
 @CrossOrigin // Allows rest to call same domain.
 public class ScoreController {
@@ -58,6 +58,13 @@ public class ScoreController {
     @PatchMapping("/score/wins")
     public Score updateWins(@RequestParam(name="new-value") int newValue){
         score.wins = newValue;
+        return score;
+    }
+
+    // put -> Body -> raw -> JSON // it send json object which get transfer into java object with the help of @Request Body parameter.
+    @PutMapping("/score")
+    public Score newScore(@RequestBody Score newScore){
+        score = newScore;
         return score;
     }
 
