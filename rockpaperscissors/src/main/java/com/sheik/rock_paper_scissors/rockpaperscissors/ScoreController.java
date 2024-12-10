@@ -1,10 +1,9 @@
 package com.sheik.rock_paper_scissors.rockpaperscissors;
 
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+
+// CrossOrigin, RestController, PatchMapping, GetMapping, PutMapping, DeleteMapping, PathVariable, RequestBody, RequestParam
 @RestController
 @CrossOrigin // Allows rest to call same domain.
 public class ScoreController {
@@ -21,6 +20,7 @@ public class ScoreController {
         return score;
     }
 
+    // return specifies attribute as requested
     @GetMapping("/score/{wlt}")
     public int getWinsLoosesOrTies(@PathVariable String wlt){
         if(wlt.equalsIgnoreCase("wins")){
@@ -29,9 +29,25 @@ public class ScoreController {
             return score.looses;
         }
             return score.ties;
-
     }
 
-// CrossOrigin, RestController, PatchMapping, GetMapping, PutMapping, DeleteMapping, PathVariable, RequestBody, RequestParam
+    //curl -X POST "http://localhost:8080/score/wins"
+    // post method to increase the wins attributes.
+    @PostMapping("/score/wins")
+    public Score increaseWins(){
+        score.wins++;
+        return score;
+    }
+
+
+
+
+    // put replace the complete data
+    // patch replace on property
+    // post
+
+
+
+
 
 }
