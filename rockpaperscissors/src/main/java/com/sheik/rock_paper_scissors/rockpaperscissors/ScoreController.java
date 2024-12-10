@@ -2,6 +2,7 @@ package com.sheik.rock_paper_scissors.rockpaperscissors;
 
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -19,18 +20,18 @@ public class ScoreController {
     public Score getScore(){
         return score;
     }
-    @GetMapping("/score/wins")
-    public int getWins(){
-        return score.wins;
-    }
-    @GetMapping("/score/looses")
-    public int getLoose(){
-        return score.looses;
-    }
-    @GetMapping("/score/ties")
-    public int getTiles(){
-        return score.ties;
+
+    @GetMapping("/score/{wlt}")
+    public int getWinsLoosesOrTies(@PathVariable String wlt){
+        if(wlt.equalsIgnoreCase("wins")){
+            return score.wins;
+        } else if (wlt.equalsIgnoreCase("looses")) {
+            return score.looses;
+        }
+            return score.ties;
+
     }
 
+// CrossOrigin, RestController, PatchMapping, GetMapping, PutMapping, DeleteMapping, PathVariable, RequestBody, RequestParam
 
 }
