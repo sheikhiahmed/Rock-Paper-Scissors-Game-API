@@ -19,6 +19,18 @@ public class ScoreController {
     public Score getScore(){
         return score;
     }
+    @GetMapping("/score/wins")
+    public int getWins(){
+        return score.wins;
+    }
+    @GetMapping("/score/looses")
+    public int getLoose(){
+        return score.looses;
+    }
+    @GetMapping("/score/ties")
+    public int getTiles(){
+        return score.ties;
+    }
 
 
 }
